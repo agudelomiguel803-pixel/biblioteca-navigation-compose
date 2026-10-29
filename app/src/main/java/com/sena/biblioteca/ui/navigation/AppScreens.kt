@@ -2,17 +2,14 @@ package com.sena.biblioteca.ui.navigation
 
 import kotlinx.serialization.Serializable
 
-/**
- * Definición centralizada de las pantallas de la aplicación.
- */
+@Serializable
 sealed class AppScreens {
 
-    // --- Flujo 1: Exploración y Reserva de Libros ---
     @Serializable
-    object Home : AppScreens()
+    data object Home : AppScreens()
 
     @Serializable
-    object BookList : AppScreens()
+    data object BookList : AppScreens()
 
     @Serializable
     data class BookDetail(
@@ -23,32 +20,35 @@ sealed class AppScreens {
     ) : AppScreens()
 
     @Serializable
+    data object MyReservations : AppScreens()
+
+    @Serializable
     data class ReservationConfirmation(
         val bookTitle: String,
         val reservationCode: String,
         val date: String
     ) : AppScreens()
 
-    // --- Flujo 2: Gestión y Renovación de Reservas ---
-    @Serializable
-    object MyReservations : AppScreens()
+    // --- NUEVAS RUTAS PARA EL FLUJO 2 ---
 
     @Serializable
     data class ReservationDetail(
-        val reservationCode: String,
         val bookTitle: String,
+        val author: String,
+        val reservationDate: String,
+        val reservationCode: String,
         val status: String
     ) : AppScreens()
 
     @Serializable
     data class RenewReservation(
-        val reservationCode: String,
-        val currentStatus: String
+        val bookTitle: String,
+        val currentDate: String
     ) : AppScreens()
 
     @Serializable
     data class RenewalSuccess(
-        val reservationCode: String,
-        val newStatus: String
+        val bookTitle: String,
+        val newDate: String
     ) : AppScreens()
 }
