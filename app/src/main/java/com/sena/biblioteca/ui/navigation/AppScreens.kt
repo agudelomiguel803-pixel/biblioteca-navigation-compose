@@ -28,4 +28,27 @@ sealed class AppScreens {
         val reservationCode: String,
         val date: String
     ) : AppScreens()
+
+    // --- NUEVAS RUTAS PARA EL FLUJO 2 ---
+
+    @Serializable
+    data class ReservationDetail(
+        val bookTitle: String,
+        val author: String,
+        val reservationDate: String,
+        val reservationCode: String,
+        val status: String
+    ) : AppScreens()
+
+    @Serializable
+    data class RenewReservation(
+        val bookTitle: String,
+        val currentDate: String
+    ) : AppScreens()
+
+    @Serializable
+    data class RenewalSuccess(
+        val bookTitle: String,
+        val newDate: String
+    ) : AppScreens()
 }
